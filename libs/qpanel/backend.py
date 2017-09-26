@@ -7,12 +7,17 @@
 from config import QPanelConfig
 from flask_babel import format_timedelta
 from utils import timedelta_from_field_dict, realname_queue_rename
-from libs.qpanel.asterisk import *
-# In case use Asterisk dont crash with ESL not in system
+
+try:
+	from libs.qpanel.asterisk import *
+	# In case use Asterisk dont crash with ESL not in system
+except:
+	print "its not possible to load asterisk libs"
+
 try:
     from libs.qpanel.freeswitch import *
 except:
-    pass
+    print "Deu error no freeswitch lib"
 
 
 class ConnectionErrorAMI(Exception):
